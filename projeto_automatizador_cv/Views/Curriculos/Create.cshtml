@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Candidato" class="control-label"></label>
@@ -37,31 +37,37 @@
                 <input asp-for="Competencias" class="form-control" />
                 <span asp-validation-for="Competencias" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Empresa" class="control-label"></label>
-                <input asp-for="Empresa" class="form-control" />
-                <span asp-validation-for="Empresa" class="text-danger"></span>
+
+            <div class="experiencia" id="formContainer">
+                <div class="form-group">
+                    <label asp-for="Empresa" class="control-label"></label>
+                    <input asp-for="Empresa" class="form-control" />
+                    <span asp-validation-for="Empresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cargo" class="control-label"></label>
+                    <input asp-for="Cargo" class="form-control" />
+                    <span asp-validation-for="Cargo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Inicio" class="control-label"></label>
+                    <input asp-for="Inicio" class="form-control" />
+                    <span asp-validation-for="Inicio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Termino" class="control-label"></label>
+                    <input asp-for="Termino" class="form-control" />
+                    <span asp-validation-for="Termino" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Atividades" class="control-label"></label>
+                    <input asp-for="Atividades" class="form-control" />
+                    <span asp-validation-for="Atividades" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Cargo" class="control-label"></label>
-                <input asp-for="Cargo" class="form-control" />
-                <span asp-validation-for="Cargo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Inicio" class="control-label"></label>
-                <input asp-for="Inicio" class="form-control" />
-                <span asp-validation-for="Inicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Termino" class="control-label"></label>
-                <input asp-for="Termino" class="form-control" />
-                <span asp-validation-for="Termino" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Atividades" class="control-label"></label>
-                <input asp-for="Atividades" class="form-control" />
-                <span asp-validation-for="Atividades" class="text-danger"></span>
-            </div>
+
+            <button type="button" onclick="duplicarExperiencia()">Acrescentar Experiência</button>
+
             <div class="form-group">
                 <label asp-for="Formacao" class="control-label"></label>
                 <input asp-for="Formacao" class="form-control" />
@@ -94,5 +100,46 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var contadorExperiencias = 1;
+
+        function duplicarExperiencia() {
+            var formContainer = document.getElementById('formContainer');
+            var ultimaExperiencia = formContainer.lastElementChild;
+
+            // Clone toda a experiência
+            var novaExperiencia = document.createElement('div');
+            novaExperiencia.className = 'experiencia';
+
+            // Incrementa o contador para garantir unicidade
+            contadorExperiencias++;
+
+            // Adiciona os campos manualmente à nova experiência
+            novaExperiencia.innerHTML = `
+                        <div class="form-group">
+                            <label for="Empresa_${contadorExperiencias}" class="control-label">Empresa</label>
+                            <input type="text" id="Empresa_${contadorExperiencias}" name="Empresa_${contadorExperiencias}" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Cargo_${contadorExperiencias}" class="control-label">Cargo</label>
+                            <input type="text" id="Cargo_${contadorExperiencias}" name="Cargo_${contadorExperiencias}" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inicio_${contadorExperiencias}" class="control-label">Início</label>
+                            <input type="text" id="Inicio_${contadorExperiencias}" name="Inicio_${contadorExperiencias}" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Termino_${contadorExperiencias}" class="control-label">Término</label>
+                            <input type="text" id="Termino_${contadorExperiencias}" name="Termino_${contadorExperiencias}" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Atividades_${contadorExperiencias}" class="control-label">Atividades</label>
+                            <input type="text" id="Atividades_${contadorExperiencias}" name="Atividades_${contadorExperiencias}" class="form-control" />
+                        </div>
+                    `;
+
+            // Adiciona a nova experiência ao formulário
+            formContainer.appendChild(novaExperiencia);
+        }
+    </script>
 }
