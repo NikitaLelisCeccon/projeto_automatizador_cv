@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projeto_automatizador_cv.Models;
 
 namespace projeto_automatizador_cv.Controllers
 {
+    [Authorize]    
     public class CurriculosController : Controller
 
     {
