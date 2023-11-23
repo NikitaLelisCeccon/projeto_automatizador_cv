@@ -1,96 +1,133 @@
 ﻿@model projeto_automatizador_cv.Models.Curriculo
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h1>Details</h1>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-<div>
-    <h4>Curriculo</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
+<head>
+    <title>Currículo</title>
+    <link rel="icon" type="image/x-icon" href="~/css/img/Seleta.png">
+
+</head>
+
+<main class="main-details" style="background-color: #ffffff">
+    <dl class="dl-conteiner">
+        <dd class="dd-name">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <hr />
+        <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Posicao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="dd-info">
             @Html.DisplayFor(model => model.Posicao)
         </dd>
-        <dt class = "col-sm-2">
+    </dl>
+    <dl class="dl-conteiner">
+        <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Resumo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Resumo)
-        </dd>
-        <dt class = "col-sm-2">
+        </dd> 
+    </dl>
+    <dl class="dl-conteiner">
+        <dt>
             @Html.DisplayNameFor(model => model.Competencias)
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Competencias)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Empresa)
-        </dt>
-        <dd class = "col-sm-10">
+    </dl>
+        <br />
+        
+    <p style="font-weight: bold">Experiências Profissionais</p>
+    <dl class="dl-experience">   
+        <dd class="dd-experience">
             @Html.DisplayFor(model => model.Empresa)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cargo)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="dd-experience">
             @Html.DisplayFor(model => model.Cargo)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Inicio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inicio)
+        <dd class="dd-experience">
+            @Html.DisplayFor(model => model.Inicio) - @Html.DisplayFor(model => model.Termino)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Termino)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Termino)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Atividades)
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Atividades)
         </dd>
-        <dt class = "col-sm-2">
+    </dl>
+    <br />
+    <dl class="dl-conteiner">
+        <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Formacao)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Formacao)
+    <dd class="dd-info">
+            <pre>@Html.DisplayFor(model => model.Formacao)</pre>
+    </dd>
+            @if (!string.IsNullOrEmpty(Model.Certificacoes))
+            {
+                <dt class="dt-title">
+                    @Html.DisplayNameFor(model => model.Certificacoes)
+                </dt>
+                <dd class="dd-info">
+                    @Html.DisplayFor(model => model.Certificacoes)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Certificacoes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Certificacoes)
-        </dd>
-        <dt class = "col-sm-2">
+    }
+
+     @if (!string.IsNullOrEmpty(Model.Cursos))
+            {
+    <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Cursos)
         </dt>
-        <dd class = "col-sm-10">
+    <dd class="dd-info">
             @Html.DisplayFor(model => model.Cursos)
         </dd>
-        <dt class = "col-sm-2">
+            }
+         @if (!string.IsNullOrEmpty(Model.Certificacoes))
+            {
+    <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Idiomas)
         </dt>
-        <dd class = "col-sm-10">
+    <dd class="dd-info">
             @Html.DisplayFor(model => model.Idiomas)
         </dd>
+            }
     </dl>
+</main>
+<br />
+<br />
+
+<div class="form-group">
+    <a asp-action="Index" class="btn" style="width:10%;color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;">
+        Voltar
+    </a>
+    <a asp-action="Edit" class="btn" style="width:10%;color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;" asp-route-id="@Model?.Candidato">Editar</a>
+    <button id="downloadButton" class="btn" style="width:10%;color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;">Download</button>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Candidato">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<script>
+    document.getElementById('downloadButton').addEventListener('click', function () {
+        
+        var options = {
+            margin: 10,
+            filename: 'curriculo.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        var element = document.querySelector('.main-details');
+
+        html2pdf(element, options);
+    });
+</script>

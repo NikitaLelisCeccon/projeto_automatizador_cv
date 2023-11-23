@@ -25,3 +25,21 @@ body {
 .form-control {
     width: 900px;
 }
+
+textarea {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.dd-name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.dd-experience {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #E9FFFF;
+}
