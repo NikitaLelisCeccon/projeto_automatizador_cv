@@ -4,35 +4,36 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>Login</h1>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
-<h4>Usuario</h4>
-<hr />
-<div class="row">
+<body class="body-home">
+<section class="login-content">
+<div class="login-box">
+            <h3 class="login-title" style="color: #BAE3F5">Login</h3><hr />
     <div class="col-md-4">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
+                        <input style="width: 300%" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" />
+                        <input style="width: 300%" asp-for="Senha" class="form-control" />
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Acessar" class="btn btn-success" />
+                <input type="submit" value="Entrar" class="btn btn-primary" style="width:50%;color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;"/>
+
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</section>
+</body>

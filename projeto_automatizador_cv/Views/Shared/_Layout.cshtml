@@ -13,6 +13,9 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div>
+                        <img src="~/css/img/GFT_Logo.jpg" class="logo" alt="Logo GFT">
+                    </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -20,18 +23,20 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                    </ul>
+                    <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
+                            <li class="nav-item" style="color:#E9FFFF">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" style="color:#E9FFFF">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Curriculos" asp-action="Index">Currículos</a>
                             </li>
 
                             @if (User.IsInRole("Admin"))
                             {
-                                <li class="nav-item">
+                                <li class="nav-item" style="color:#E9FFFF">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuários</a>
                                 </li>
                             }
@@ -40,13 +45,13 @@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
+                            <li class="nav-item" style="color:#E9FFFF">
                                 Olá,@User.Identity.Name <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Sair</a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
+                            <li class="nav-item" style="color:#E9FFFF">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Login</a>
                             </li>
                         }

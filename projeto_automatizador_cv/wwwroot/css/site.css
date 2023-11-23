@@ -40,6 +40,54 @@ textarea {
     font-weight: bold;
 }
 
-.nav-link {
-    color: #E9FFFF;
+.logo {
+    position: absolute;
+    margin-top: 5px;
+    height: 55px;
+    top: -5px;
+    left: 1%;
+}
+
+.body-home {
+    background-image: url('/css/img/11columns_PPT_GFT_GettyImages-637232786.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.display-4 {
+    color: #BAE3F5;
+    font-weight: bold;
+}
+
+
+/*Página Login*/
+
+.title-text {
+    position: absolute;
+    width: 38%;
+    height: 100%;
+    top: 450px;
+    left: 20px;
+    z-index: 0;
+}
+
+.login-content {
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    top: 0px;
+    left: 0%;
+}
+
+.login-content .login-box {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 30%;
+    left: 5%;
+    border-radius: 50px;
+    background-color: #000000;
+    color: #BAE3F5; 
+    padding: 40px;
 }
