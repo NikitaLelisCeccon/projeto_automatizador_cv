@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn-custom {
+    background-color: #B02a87; 
+    color: #ffffff;
+}
+
+.form-control {
+    width: 900px;
+}

@@ -1,55 +1,25 @@
 ﻿@model IEnumerable<projeto_automatizador_cv.Models.Curriculo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Currículos";
 }
 
-<h1>Index</h1>
-
+<body class="body-pages" style="background-color: #EDEDED">
+<h1>Currículos</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-custom">Novo Currículo</a>
 </p>
-<table class="table">
+    <table class="table" style="vertical-align: middle">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Candidato)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Posicao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resumo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Competencias)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empresa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cargo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Inicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Termino)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Atividades)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Formacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Certificacoes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cursos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Idiomas)
             </th>
             <th></th>
         </tr>
@@ -58,50 +28,21 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Candidato)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Posicao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Resumo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Competencias)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empresa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Termino)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Atividades)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Formacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Certificacoes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cursos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Idiomas)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Candidato">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Candidato">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Candidato">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Candidato" class="btn" style="width:20%;color: #000000;background-color: #D39CC6; border-radius: 5px;">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Candidato" class="btn" style="width:20%;color: #000000;background-color: #D39CC6; border-radius: 5px;">Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@item.Candidato" class="btn" style="width:20%;color: #000000;background-color: #D39CC6; border-radius: 5px;">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</body>
