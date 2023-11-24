@@ -27,16 +27,16 @@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item" style="color:#E9FFFF">
+                            <li class="nav-item" style="color:#BAE3F5">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li class="nav-item" style="color:#E9FFFF">
+                            <li class="nav-item" style="color:#BAE3F5">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Curriculos" asp-action="Index">Currículos</a>
                             </li>
 
                             @if (User.IsInRole("Admin"))
                             {
-                                <li class="nav-item" style="color:#E9FFFF">
+                                <li class="nav-item" style="color:#BAE3F5">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuários</a>
                                 </li>
                             }
@@ -45,13 +45,13 @@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item" style="color:#E9FFFF">
+                            <li class="nav-item" style="color:#BAE3F5">
                                 Olá,@User.Identity.Name <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Sair</a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item" style="color:#E9FFFF">
+                            <li class="nav-item" style="color:#BAE3F5">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Login</a>
                             </li>
                         }

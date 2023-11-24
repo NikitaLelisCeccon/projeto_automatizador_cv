@@ -9,27 +9,24 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-<head>
-    <title>Currículo</title>
-    <link rel="icon" type="image/x-icon" href="~/css/img/Seleta.png">
-
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 <main class="main-details" style="background-color: #ffffff">
+   <div class="cv-content">
+   <div>
+        <img src="~/css/img/cv-logo.jpg" class="cv-logo" alt="Logo GFT">
+   </div>
+
     <dl class="dl-conteiner">
         <dd class="dd-name">
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <hr />
-        <dt class="dt-title">
-            @Html.DisplayNameFor(model => model.Posicao)
-        </dt>
-        <dd class="dd-info">
+        <dd class="dd-position">
             @Html.DisplayFor(model => model.Posicao)
         </dd>
     </dl>
+    <br />
     <dl class="dl-conteiner">
         <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Resumo)
@@ -39,16 +36,16 @@
         </dd> 
     </dl>
     <dl class="dl-conteiner">
-        <dt>
+        <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Competencias)
         </dt>
-        <dd>
+        <dd class="dd-info">
             @Html.DisplayFor(model => model.Competencias)
         </dd>
     </dl>
-        <br />
-        
-    <p style="font-weight: bold">Experiências Profissionais</p>
+    <br />
+    <hr /> 
+    <p class="dd-info">Experiências Profissionais</p>
     <dl class="dl-experience">   
         <dd class="dd-experience">
             @Html.DisplayFor(model => model.Empresa)
@@ -67,6 +64,7 @@
         </dd>
     </dl>
     <br />
+    <hr />
     <dl class="dl-conteiner">
         <dt class="dt-title">
             @Html.DisplayNameFor(model => model.Formacao)
@@ -80,29 +78,30 @@
                     @Html.DisplayNameFor(model => model.Certificacoes)
                 </dt>
                 <dd class="dd-info">
-                    @Html.DisplayFor(model => model.Certificacoes)
+                    <pre>@Html.DisplayFor(model => model.Certificacoes)</pre>
         </dd>
     }
 
-     @if (!string.IsNullOrEmpty(Model.Cursos))
+            @if (!string.IsNullOrEmpty(Model.Cursos))
             {
-    <dt class="dt-title">
-            @Html.DisplayNameFor(model => model.Cursos)
-        </dt>
-    <dd class="dd-info">
-            @Html.DisplayFor(model => model.Cursos)
-        </dd>
+                <dt class="dt-title">
+                    @Html.DisplayNameFor(model => model.Cursos)
+                </dt>
+                <dd class="dd-info">
+                    <pre>@Html.DisplayFor(model => model.Cursos)</pre>
+                </dd>
             }
-         @if (!string.IsNullOrEmpty(Model.Certificacoes))
+            @if (!string.IsNullOrEmpty(Model.Idiomas))
             {
-    <dt class="dt-title">
-            @Html.DisplayNameFor(model => model.Idiomas)
-        </dt>
-    <dd class="dd-info">
-            @Html.DisplayFor(model => model.Idiomas)
-        </dd>
+                <dt class="dt-title">
+                    @Html.DisplayNameFor(model => model.Idiomas)
+                </dt>
+                <dd class="dd-info">
+                    <pre>@Html.DisplayFor(model => model.Idiomas)</pre>
+                </dd>
             }
     </dl>
+   </div>
 </main>
 <br />
 <br />
@@ -117,7 +116,9 @@
 
 <script>
     document.getElementById('downloadButton').addEventListener('click', function () {
-        
+
+        var element = document.querySelector('.cv-content');
+
         var options = {
             margin: 10,
             filename: 'curriculo.pdf',
@@ -125,8 +126,6 @@
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
-
-        var element = document.querySelector('.main-details');
 
         html2pdf(element, options);
     });

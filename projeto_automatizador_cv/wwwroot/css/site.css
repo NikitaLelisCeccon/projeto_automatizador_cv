@@ -31,15 +31,6 @@ textarea {
     word-wrap: break-word;
 }
 
-.dd-name {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.dd-experience {
-    font-weight: bold;
-}
-
 .logo {
     position: absolute;
     margin-top: 5px;
@@ -48,29 +39,28 @@ textarea {
     left: 1%;
 }
 
+/*Home*/
 .body-home {
     background-image: url('/css/img/11columns_PPT_GFT_GettyImages-637232786.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
 }
-
-.display-4 {
-    color: #BAE3F5;
-    font-weight: bold;
-}
-
-
-/*Página Login*/
 
 .title-text {
+    color: #BAE3F5;
+    font-weight: bold;
     position: absolute;
     width: 38%;
-    height: 100%;
     top: 450px;
     left: 20px;
     z-index: 0;
 }
+
+
+/*Página Login*/
 
 .login-content {
     position: absolute;
@@ -90,4 +80,47 @@ textarea {
     background-color: #000000;
     color: #BAE3F5; 
     padding: 40px;
+}
+
+/*Customização Currículo*/
+
+dd {
+    text-align: justify;
+    font-family: Arial;
+    font-size: 16px;
+    color: #000000;
+}
+.dd-name {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.dd-position {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dd-experience {
+    font-weight: bold;
+}
+
+.dt-title {
+    font-size: 20px;
+}
+
+p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+pre {
+    text-align: justify;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.cv-logo {
+    position: absolute;
+    height: 50px;
+    left: calc(100% - 7.5% - 240px);
 }
