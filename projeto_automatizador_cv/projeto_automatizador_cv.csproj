@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\img\GFT_FundoPreto.jpg" />
     <Content Remove="wwwroot\css\img\logo_cv.jpg" />
   </ItemGroup>
 
