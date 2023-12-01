@@ -67,6 +67,27 @@ namespace projeto_automatizador_cv.Controllers
 
             if (ModelState.IsValid)
             {
+                _context.Entry(curriculo).Collection(c => c.Experiencias).EntityEntry.State = EntityState.Detached;
+
+                var existingExperiencias = await _context.Experiencias
+                    .Where(e => e.CurriculoCandidato == id)
+                    .ToListAsync();
+
+                foreach (var existingExperiencia in existingExperiencias)
+                {
+                    if (!curriculo.Experiencias.Any(e => e.Id == existingExperiencia.Id))
+                        _context.Experiencias.Remove(existingExperiencia);
+                }
+
+                foreach (var experiencia in curriculo.Experiencias)
+                {
+                    experiencia.CurriculoCandidato = id;
+                    if (experiencia.Id == 0)
+                        _context.Experiencias.Add(experiencia);
+                    else
+                        _context.Experiencias.Update(experiencia);
+                }
+
                 _context.Curriculos.Update(curriculo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -44,7 +44,7 @@ namespace projeto_automatizador_cv.Controllers
         public async Task<IActionResult> Login(Usuario usuario)
         {
             var dados = await _context.Usuarios
-                .FindAsync(usuario.Id);
+                .FirstOrDefaultAsync(u => u.Nome == usuario.Nome);
 
             if (dados == null)
             {

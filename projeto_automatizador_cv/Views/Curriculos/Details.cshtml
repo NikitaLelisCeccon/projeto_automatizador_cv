@@ -46,7 +46,7 @@
     <br />
     <hr /> 
     <p class="dd-info">Experiências Profissionais</p>
-        @foreach (var experiencia in Model.Experiencias)
+        @foreach (var experiencia in Model.Experiencias.Where(e => !string.IsNullOrWhiteSpace(e.Empresa) || !string.IsNullOrWhiteSpace(e.Cargo) || !string.IsNullOrWhiteSpace(e.Inicio) || !string.IsNullOrWhiteSpace(e.Termino) || !string.IsNullOrWhiteSpace(e.Atividades)))
         {
             <dl class="dl-experience">
                 <dd class="dd-experience">
@@ -65,7 +65,6 @@
                         @experiencia.Atividades
                     </dd>
             </dl>
-            <br />
         }
     <br />
     <hr />

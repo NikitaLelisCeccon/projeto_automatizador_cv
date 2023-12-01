@@ -7,7 +7,6 @@ namespace projeto_automatizador_cv.Models
 
     public class Usuario
     {
-        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o nome")]

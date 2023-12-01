@@ -147,5 +147,6 @@ pre {
 .cv-logo {
     position: absolute;
     height: 50px;
-    left: calc(100% - 7.5% - 240px);
+    left: calc(100% - 5% - 240px);
 }
+
