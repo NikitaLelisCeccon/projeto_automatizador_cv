@@ -4,9 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Usuario</h4>
+<body class="body-pages" style="background-color: #EDEDED">
+<h1>Editar Usuário</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -28,16 +27,17 @@
                 <select asp-for="Perfil" class="form-control" asp-items="Html.GetEnumSelectList<Perfil>()"></select>
                 <span asp-validation-for="Perfil" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            <br />
+                <div class="form-group">
+                    <a asp-action="Index" class="btn" style="width:30%;color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;">
+                        Voltar
+                    </a>
+                    <input type="submit" value="Salvar" class="btn btn-primary" style="width:30%;color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;" />
+                </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</body>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

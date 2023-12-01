@@ -4,12 +4,10 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Usuario</h4>
+<body class="body-pages" style="background-color: #EDEDED">
+    <h1>Você tem certeza que deseja excluir o usuário?</h1>
     <hr />
+<div>
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
@@ -27,7 +25,10 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn" style="width:10%; color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;">
+                Voltar
+        </a>
+        <input type="submit" value="Excluir" class="btn" style="width:10%; color: #ffffff;background-color: #B02a87; border-radius: 5px; border: 1px solid #B02a87;">
     </form>
 </div>
+</body>
