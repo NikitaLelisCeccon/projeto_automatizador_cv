@@ -43,33 +43,40 @@
                 <span asp-validation-for="Competencias" class="text-danger"></span>
             </div>
 
-            <div class="experiencia" id="formContainer">
-                <div class="form-group">
-                    <label asp-for="Empresa" class="control-label"></label>
-                    <input asp-for="Empresa" class="form-control" />
-                    <span asp-validation-for="Empresa" class="text-danger"></span>
+                <div class="experiencia" id="formContainer">
+                    @for (int i = 0; i < Model.Experiencias.Count; i++)
+                        {
+                            <div class="modeloExperiencia">
+                                <div class="form-group">
+                                    <label asp-for="Experiencias[i].Empresa" class="control-label"></label>
+                                    <input asp-for="Experiencias[i].Empresa" class="form-control" />
+                                    <span asp-validation-for="Experiencias[i].Empresa" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Experiencias[i].Cargo" class="control-label"></label>
+                                    <input asp-for="Experiencias[i].Cargo" class="form-control" />
+                                    <span asp-validation-for="Experiencias[i].Cargo" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Experiencias[i].Inicio" class="control-label"></label>
+                                    <input asp-for="Experiencias[i].Inicio" class="form-control" />
+                                    <span asp-validation-for="Experiencias[i].Inicio" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Experiencias[i].Termino" class="control-label"></label>
+                                    <input asp-for="Experiencias[i].Termino" class="form-control" />
+                                    <span asp-validation-for="Experiencias[i].Termino" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Experiencias[i].Atividades" class="control-label"></label>
+                                    <textarea asp-for="Experiencias[i].Atividades" class="form-control" rows="5"></textarea>
+                                    <span asp-validation-for="Experiencias[i].Atividades" class="text-danger"></span>
+                                </div>
+                            </div>
+                        }
                 </div>
-                <div class="form-group">
-                    <label asp-for="Cargo" class="control-label"></label>
-                    <input asp-for="Cargo" class="form-control" />
-                    <span asp-validation-for="Cargo" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Inicio" class="control-label"></label>
-                    <input asp-for="Inicio" class="form-control" />
-                    <span asp-validation-for="Inicio" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Termino" class="control-label"></label>
-                    <input asp-for="Termino" class="form-control" />
-                    <span asp-validation-for="Termino" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Atividades" class="control-label"></label>
-                    <textarea asp-for="Atividades" class="form-control" rows="5"></textarea>
-                    <span asp-validation-for="Atividades" class="text-danger"></span>
-                </div>
-            </div>
+                
             <br />
                 <button type="button" style="background-color: #D39CC6; border-radius: 5px; border: 1px solid #D39CC6" onclick="duplicarExperiencia()">Acrescentar Experiência</button>
                 <br /><br />
@@ -106,40 +113,34 @@
 </body>
 
 <script>
-        var contadorExperiencias = 1;
+    var experienciaIndex = @Model.Experiencias.Count;
 
-        function duplicarExperiencia() {
-            var formContainer = document.getElementById('formContainer');
-            var ultimaExperiencia = formContainer.lastElementChild;
+    function duplicarExperiencia() {
+        const modeloExperiencia = document.querySelector(".modeloExperiencia");
+        const novaExperiencia = modeloExperiencia.cloneNode(true);
 
-            var novaExperiencia = document.createElement('div');
-            novaExperiencia.className = 'experiencia';
+        // Limpar os campos dos novos elementos
+        novaExperiencia.querySelectorAll("input, textarea").forEach(elemento => {
+            elemento.value = "";
+        });
 
-            contadorExperiencias++;
+        novaExperiencia.querySelectorAll("[id]").forEach(elemento => {
+            elemento.id = elemento.id + experienciaIndex;
+        });
 
-            novaExperiencia.innerHTML = `
-                        <div class="form-group">
-                            <label for="Empresa_${contadorExperiencias}" class="control-label">Empresa</label>
-                            <input type="text" id="Empresa_${contadorExperiencias}" name="Empresa_${contadorExperiencias}" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Cargo_${contadorExperiencias}" class="control-label">Cargo</label>
-                            <input type="text" id="Cargo_${contadorExperiencias}" name="Cargo_${contadorExperiencias}" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Inicio_${contadorExperiencias}" class="control-label">Início</label>
-                            <input type="text" id="Inicio_${contadorExperiencias}" name="Inicio_${contadorExperiencias}" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Termino_${contadorExperiencias}" class="control-label">Término</label>
-                            <input type="text" id="Termino_${contadorExperiencias}" name="Termino_${contadorExperiencias}" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Atividades_${contadorExperiencias}" class="control-label">Atividades</label>
-                            <textarea rows="5" id="Atividades_${contadorExperiencias}" name="Atividades_${contadorExperiencias}" class="form-control"></textarea>
-                        </div>
-                    `;
+        novaExperiencia.querySelectorAll("[name]").forEach(elemento => {
+            elemento.name = elemento.name.replace("[0]", `[${experienciaIndex}]`);
+        });
 
-            formContainer.appendChild(novaExperiencia);
-        }
+        novaExperiencia.classList.remove("modeloExperiencia");
+
+        const formContainer = document.getElementById("formContainer");
+        formContainer.appendChild(novaExperiencia);
+
+        experienciaIndex++;
+    }
 </script>
+
+
+
+

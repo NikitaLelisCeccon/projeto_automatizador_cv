@@ -22,18 +22,8 @@ namespace projeto_automatizador_cv.Models
         [Display(Name = "Competências")]
         public string Competencias { get; set; }
 
-        public string Empresa { get; set; }
-
-        public string Cargo { get; set; }
-
-        [Display(Name = "Início")]
-        public string Inicio { get; set; }
-
-        [Display(Name = "Término")]
-        public string Termino { get; set; }
-
-        public string Atividades { get; set; }
-
+        public List<Experiencia> Experiencias { get; set; } = new List<Experiencia>();
+        
         [Display(Name = "Formação")]
         public string Formacao { get; set; }
 
@@ -41,17 +31,5 @@ namespace projeto_automatizador_cv.Models
         public string Certificacoes { get; set; }
         public string Cursos { get; set; }
         public string Idiomas { get; set; }
-
-        public List<Experiencia> Experiencias { get; set; }
-    }
-    public class Experiencia
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Empresa { get; set; }
-        public string Cargo { get; set; }
-        public string Inicio { get; set; }
-        public string Termino { get; set; }
-        public string Atividades { get; set; }
     }
 }

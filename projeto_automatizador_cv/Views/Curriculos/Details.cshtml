@@ -46,23 +46,27 @@
     <br />
     <hr /> 
     <p class="dd-info">Experiências Profissionais</p>
-    <dl class="dl-experience">   
-        <dd class="dd-experience">
-            @Html.DisplayFor(model => model.Empresa)
-        </dd>
-        <dd class="dd-experience">
-            @Html.DisplayFor(model => model.Cargo)
-        </dd>
-        <dd class="dd-experience">
-            @Html.DisplayFor(model => model.Inicio) - @Html.DisplayFor(model => model.Termino)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Atividades)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Atividades)
-        </dd>
-    </dl>
+        @foreach (var experiencia in Model.Experiencias)
+        {
+            <dl class="dl-experience">
+                <dd class="dd-experience">
+                    @experiencia.Empresa
+                </dd>
+                <dd class="dd-experience">
+                    @experiencia.Cargo
+                </dd>
+                <dd class="dd-experience">
+                    @experiencia.Inicio - @experiencia.Termino
+                </dd>
+                    <dt>
+                        Atividades
+                    </dt>
+                    <dd>
+                        @experiencia.Atividades
+                    </dd>
+            </dl>
+            <br />
+        }
     <br />
     <hr />
     <dl class="dl-conteiner">

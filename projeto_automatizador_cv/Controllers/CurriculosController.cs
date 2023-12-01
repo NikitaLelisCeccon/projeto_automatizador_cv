@@ -17,7 +17,7 @@ namespace projeto_automatizador_cv.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var dados = await _context.Curriculos.ToListAsync();
+            var dados = await _context.Curriculos.Include(c => c.Experiencias).ToListAsync();
 
             return View(dados);
         }
@@ -25,8 +25,11 @@ namespace projeto_automatizador_cv.Controllers
         //CREATE
         public IActionResult Create()
         {
-            var novoItem = new Curriculo();
-            return View();
+            var novoItem = new Curriculo
+            {
+                Experiencias = new List<Experiencia> { new Experiencia() }
+            };
+            return View(novoItem);
         }
 
         [HttpPost]
@@ -48,7 +51,7 @@ namespace projeto_automatizador_cv.Controllers
             if (id == null)
                 return NotFound();
 
-            var dados = await _context.Curriculos.FindAsync(id);
+            var dados = await _context.Curriculos.Include(c => c.Experiencias).FirstOrDefaultAsync(c => c.Candidato == id);
 
             if (dados == null)
                 return NotFound();
@@ -74,17 +77,19 @@ namespace projeto_automatizador_cv.Controllers
 
         //DETAILS
         public async Task<IActionResult> Details(string? id)
-        {
+{
             if (id == null)
                 return NotFound();
 
-            var dados = await _context.Curriculos.FindAsync(id);
+            var dados = await _context.Curriculos
+                .Include(c => c.Experiencias)
+                .FirstOrDefaultAsync(c => c.Candidato == id);
 
             if (dados == null)
                 return NotFound();
 
             return View(dados);
-        }
+}
 
         //DELETE
         public async Task<IActionResult> Delete(string? id)
